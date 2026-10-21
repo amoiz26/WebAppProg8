@@ -27,11 +27,23 @@ const server =
           res.write("You rang?")
           res.end();
         
-      } else {
-        console.log("Status 404")
-        res.statusCode = 404;
-        res.end();
-      }
+      
+} else if (req.method === 'POST') {
+    console.log("POST request received");
+    console.log("POST URL: " + req.url);
+    console.log("POST data: " + search_params.get("data"));
+
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end("POST request successful. Data received: " +
+        search_params.get("data"));
+
+} else {
+    console.log("Status 404");
+    res.statusCode = 404;
+    res.end();
+}
+
 
     }                           
 )
